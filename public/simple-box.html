@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>cke5-simple-box</title>
+
+    <style>
+      .simple-box {
+        padding: 10px;
+        margin: 1em 0;
+
+        background: rgba(0, 0, 0, 0.1);
+        /* border: 3px solid coral; */
+        border-radius: 2px;
+      }
+
+      .simple-box-title,
+      .simple-box-description {
+        color: coral;
+        padding: 10px;
+        margin: 0;
+
+        background: #fff;
+        border: solid 1px hsl(0, 0%, 77%);
+      }
+
+      .simple-box-title {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="editor">
+      <p>This is a simple box:</p>
+
+      <section class="simple-box">
+        <h1 class="simple-box-title">Box title</h1>
+        <div class="simple-box-description">
+          <p>The description goes here.</p>
+          <ul>
+            <li>It can contain lists,</li>
+            <li>and other block elements like headings.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
