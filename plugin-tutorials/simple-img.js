@@ -17,6 +17,7 @@ class InsertImage extends Plugin {
 
     const editor = this.editor;
 
+    // * 定义会添加到toolbar的ui部分
     editor.ui.componentFactory.add('insertImage', (locale) => {
       const view = new ButtonView(locale);
 
@@ -31,10 +32,13 @@ class InsertImage extends Plugin {
       view.on('execute', () => {
         const imageUrl = prompt('Image URL');
 
+        // * 修改model，插入图片
         editor.model.change((writer) => {
           const imageElement = writer.createElement('imageBlock', {
             src: imageUrl,
           });
+          writer.appendElement('caption', imageElement);
+          writer.appendText('Caption text', imageElement.getChild(0));
 
           // Insert the image in the current selection location.
           editor.model.insertContent(

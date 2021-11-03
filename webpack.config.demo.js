@@ -29,7 +29,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       // template: path.resolve(process.cwd(), 'demo.html'),
       // template: './public/index.html',
-      template: './public/simple-box.html',
+      // template: './public/simple-box.html',
+      template: './public/simple-img.html',
       // filename: 'index.html',
     }),
   ],
