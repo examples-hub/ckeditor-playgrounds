@@ -47,7 +47,6 @@ export class CardEditing extends Plugin {
 
       // Allow in places where other blocks are allowed (e.g. directly in the root).
       allowWhere: '$block',
-      allowChildren: ['cardTitle', 'cardDesc', 'imageBlock'],
     });
 
     schema.register('cardTitle', {

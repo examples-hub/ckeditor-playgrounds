@@ -27,16 +27,8 @@ function createCard(writer) {
   const cardTitle = writer.createElement('cardTitle');
   const cardDesc = writer.createElement('cardDesc');
 
-  const imageElement = writer.createElement('imageBlock', {
-    src: `https://www.baidu.com/img/bd_logo1.png`,
-    class: 'img-custom',
-  });
-  writer.appendElement('caption', imageElement);
-  writer.appendText('请输入标题或描述', imageElement.getChild(0));
-
   writer.append(cardTitle, card);
   writer.append(cardDesc, card);
-  writer.append(imageElement, card);
 
   // There must be at least one paragraph for the description to be editable.
   // See https://github.com/ckeditor/ckeditor5/issues/1464.
