@@ -3,7 +3,7 @@ import Command from '@ckeditor/ckeditor5-core/src/command';
 export class InsertCardCommand extends Command {
   execute() {
     this.editor.model.change((writer) => {
-      // Insert <simpleBox>*</simpleBox> at the current selection position
+      // Insert <card>*</card> at the current selection position
       // in a way that will result in creating a valid model structure.
       this.editor.model.insertContent(createCard(writer));
     });
@@ -14,7 +14,7 @@ export class InsertCardCommand extends Command {
     const selection = model.document.selection;
     const allowedIn = model.schema.findAllowedParent(
       selection.getFirstPosition(),
-      'simpleBox',
+      'card',
     );
 
     this.isEnabled = allowedIn !== null;

@@ -32,7 +32,10 @@ export class CardEditing extends Plugin {
     this._defineConverters();
 
     // 注册cmd
-    this.editor.commands.add('insertCard', new InsertCardCommand(this.editor));
+    this.editor.commands.add(
+      'insertCardCmd',
+      new InsertCardCommand(this.editor),
+    );
   }
 
   _defineSchema() {
@@ -59,7 +62,6 @@ export class CardEditing extends Plugin {
     schema.register('cardDesc', {
       // Cannot be split or left by the caret.
       isLimit: true,
-
       allowIn: 'card',
 
       // Allow content which is allowed in the root (e.g. paragraphs).
@@ -99,7 +101,7 @@ export class CardEditing extends Plugin {
           class: 'simple-box',
         });
 
-        return toWidget(section, viewWriter, { label: 'simple box widget' });
+        return toWidget(section, viewWriter, { label: 'card widget' });
         // return toWidgetEditable(section, viewWriter, { label: 'simple box widget' });
       },
     });
@@ -127,8 +129,8 @@ export class CardEditing extends Plugin {
           class: 'simple-box-title',
         });
 
-        // return toWidgetEditable(h1, viewWriter);
-        return toWidget(h1, viewWriter);
+        return toWidgetEditable(h1, viewWriter);
+        // return toWidget(h1, viewWriter);
       },
     });
 

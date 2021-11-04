@@ -17,7 +17,7 @@ ClassicEditor.create(document.querySelector('#editor'), {
     'italic',
     'numberedList',
     'bulletedList',
-    'card',
+    'cardToolbarItem',
   ],
 })
   .then((editor) => {

@@ -6,6 +6,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor'
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
 import Image from '@ckeditor/ckeditor5-image/src/image';
 import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
+import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
 
@@ -17,7 +18,7 @@ class InsertImage extends Plugin {
 
     const editor = this.editor;
 
-    // * 定义会添加到toolbar的ui部分
+    // * 定义一个插入图片的按钮
     editor.ui.componentFactory.add('insertImage', (locale) => {
       const view = new ButtonView(locale);
 
@@ -32,13 +33,17 @@ class InsertImage extends Plugin {
       view.on('execute', () => {
         const imageUrl = prompt('Image URL');
 
-        // * 修改model，插入图片
+        // * 修改model，插入图片数据
         editor.model.change((writer) => {
           const imageElement = writer.createElement('imageBlock', {
             src: imageUrl,
+            class: 'img-custom',
           });
           writer.appendElement('caption', imageElement);
-          writer.appendText('Caption text', imageElement.getChild(0));
+          writer.appendText('请输入标题或描述', imageElement.getChild(0));
+
+          console.log('insertImage-writer, ', writer.constructor.name);
+          console.log('insertImage-writer, ', writer);
 
           // Insert the image in the current selection location.
           editor.model.insertContent(
@@ -63,10 +68,14 @@ ClassicEditor.create(document.querySelector('#editor'), {
     InsertImage,
     ImageCaption,
   ],
+  // * 将插入图片的按钮添加到toolbar
   toolbar: ['bold', 'italic', 'insertImage'],
 })
   .then((editor) => {
     console.log('Editor was initialized', editor);
+    window.editor = editor;
+
+    CKEditorInspector.attach({ 'main-editor': editor });
   })
   .catch((error) => {
     console.error(error.stack);
