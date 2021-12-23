@@ -1,0 +1,29 @@
+# msgctxt "注释说明内容"
+# msgid '未翻译语言'
+# msgstr '翻译语言'
+# 查看翻译内容 window.CKEDITOR_TRANSLATIONS['zh-cn'].dictionary
+
+msgid ""
+msgstr ""
+"Language-Team: Chinese (China) (https://www.transifex.com/ckeditor/teams/11143/zh_CN/)\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Toggle caption off"
+msgstr "==隐藏图片描述或标题"
+
+msgid "Toggle caption on"
+msgstr "==显示图片描述或标题"
+
+msgid "Side image"
+msgstr "==右对齐"
+
+msgid "Insert image"
+msgstr "==插入图片"
+
+msgid "Left aligned image"
+msgstr "==左对齐"
+
+msgid "insert card"
+msgstr "插入卡片"
+

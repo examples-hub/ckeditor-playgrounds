@@ -5,9 +5,10 @@
   "description": "ckeditor code playgrounds.",
   "license": "SEE LICENSE IN LICENSE.md",
   "author": "CKSource",
-  "main": "./build/ckeditor.js",
+  "main": "src/index.js",
   "scripts": {
     "build": "webpack --mode production",
+    "build-lang": "webpack --config ./webpack.config.demo.js",
     "demo": "webpack-dev-server --hot --config ./webpack.config.demo.js",
     "start": "npm run demo"
   },

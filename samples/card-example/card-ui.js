@@ -21,8 +21,8 @@ export class CardUI extends Plugin {
       buttonView.set({
         // The t() function helps localize the editor. All strings enclosed in t() can be
         // translated and change when the language of the editor changes.
-        // label: t('卡片'),
-        label:  '卡片',
+        label: t('insert card'),
+        // label:  '卡片',
         withText: true,
         tooltip: true,
       });

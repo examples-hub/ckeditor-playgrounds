@@ -2,13 +2,20 @@ import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import imageIcon from '@ckeditor/ckeditor5-core/theme/icons/image.svg';
+import pilcrowIcon from '@ckeditor/ckeditor5-core/theme/icons/pilcrow.svg';
 import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
 import Image from '@ckeditor/ckeditor5-image/src/image';
 import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
+import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
+import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
+import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
+import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
 import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
+
+import { ImgCustomUploadPlugin } from './custom/custom-img-upload-plugin';
 
 // https://www.baidu.com/img/bd_logo1.png
 
@@ -24,8 +31,8 @@ class InsertImage extends Plugin {
 
       view.set({
         // 会作为鼠标提示
-        label: '插入图片',
-        icon: imageIcon,
+        label: '插入图片url',
+        icon: pilcrowIcon,
         tooltip: true,
       });
 
@@ -59,17 +66,39 @@ class InsertImage extends Plugin {
 }
 
 ClassicEditor.create(document.querySelector('#editor'), {
+  language: 'zh-cn',
+  // language: 'en',
   plugins: [
     Essentials,
     Paragraph,
     Bold,
     Italic,
     Image,
-    InsertImage,
+    ImageStyle,
     ImageCaption,
+    ImageResize,
+    InsertImage,
+    ImageToolbar,
+    ImageUpload,
+    ImgCustomUploadPlugin,
   ],
   // * 将插入图片的按钮添加到toolbar
-  toolbar: ['bold', 'italic', 'insertImage'],
+  toolbar: ['bold', 'italic', 'insertImage', 'uploadImage'],
+  image: {
+    styles: ['alignLeft', 'alignCenter', 'alignRight', 'full', 'side'],
+    toolbar: [
+      // 'imageStyle:center',
+      // 'imageStyle:full',
+      // 'imageStyle:side',
+      'imageStyle:alignLeft',
+      'imageStyle:alignCenter',
+      'imageStyle:alignRight',
+      '|',
+      'toggleImageCaption',
+    ],
+    // 为相应的 scheme 添加 image caption
+    caption: ['image'],
+  },
 })
   .then((editor) => {
     console.log('Editor was initialized', editor);

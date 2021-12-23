@@ -5,6 +5,7 @@ const CKEditorWebpackPlugin = require('@ckeditor/ckeditor5-dev-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  mode: 'development',
   devtool: 'source-map',
   performance: { hints: false },
 
@@ -18,8 +19,15 @@ module.exports = {
 
   plugins: [
     new CKEditorWebpackPlugin({
-      language: 'zh-cn',
-      addMainLanguageTranslationsToAllAssets: true,
+      language: 'en',
+      additionalLanguages: ['en', 'zh-cn','zh'],
+      // language: 'en',
+      // addMainLanguageTranslationsToAllAssets: true,
+      verbose: true,
+      packageNamesPattern: /[/\\]ckeditor[^/\\]+[/\\]/,
+      // packageNamesPattern: /^ckeditor/,
+      sourceFilesPattern: /[/\\]ckeditor[^/\\]+[/\\]src[/\\].+\.js$/,
+      // sourceFilesPattern: /^ckeditor[^/\\]+[/\\]src[/\\].+\.js$/,
     }),
     new webpack.BannerPlugin({
       banner: bundler.getLicenseBanner(),
@@ -28,8 +36,8 @@ module.exports = {
 
     new HtmlWebpackPlugin({
       // template: path.resolve(process.cwd(), 'demo.html'),
-      // template: './public/index.html',
-      template: './public/simple-box.html',
+      template: './public/index.html',
+      // template: './public/simple-box.html',
       // template: './public/simple-img.html',
       // filename: 'index.html',
     }),
